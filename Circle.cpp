@@ -1,55 +1,53 @@
 #include "Circle.h"
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
 
-Circle::Circle(){
-   center.x = 0;
-   center.y = 0;
-   radius = 1;
-}
-Circle::Circle(string color, Point2D center,double radius){
-   this->color = color;
-   this->center = center;
-   this->radius = radius;
-}
-Point2D Circle::get_center() const{
-   return center;
-}
-void Circle::set_center(Point2D p){
-   center = p;
+Circle::Circle() : Shape(), center(Point2D()), radius(0) {}
+
+Circle::Circle(string color, Point2D center, double radius) : Shape(color), center(center), radius(radius) {}
+
+Point2D Circle::get_center() const {
+    return center;
 }
 
-double Circle::get_radius() const{
-   return radius;
+void Circle::set_center(Point2D p) {
+    center = p;
 }
 
-void Circle::set_radius(double r){
-   radius = r;
+double Circle::get_radius() const {
+    return radius;
 }
 
-std::ostream& operator<<(std::ostream &out, const Circle &c){
-   out << "Circle: " << " Color = " << c.get_color() << " || Centro = (" << c.get_center().x << ", " << c.get_center().y << ")" << " || Radio = "<< c.get_radius()<< "\n";
-   return out;
+void Circle::set_radius(double r) {
+    if (r >= 0) {
+        radius = r;
+    } else {
+        cerr << "Radius cannot be negative." << endl;
+    }
 }
 
-
-double Circle::area() const{
-   return 3.141592*radius*radius;
+ostream& operator<<(ostream &out, const Circle &c) {
+    out << "Circle[color=" << c.color 
+        << ", center=(" << c.center.x << ", " << c.center.y << ")"
+        << ", radius=" << c.radius << "]";
+    return out;
 }
 
-
-double Circle::perimeter() const{
-   return 2*3.141592*radius;
+double Circle::area() const {
+    return M_PI * radius * radius;
 }
 
-void Circle::translate(double incX, double incY){
-   center.x = center.x + incX;
-   center.y = center.y + incY;
-
+double Circle::perimeter() const {
+    return 2 * M_PI * radius;
 }
 
-void Circle::print(){
-  cout << *this;
-
+void Circle::translate(double incX, double incY) {
+    center.x += incX;
+    center.y += incY;
 }
+
+void Circle::print() {
+    cout << *this << endl;
+}
+
