@@ -18,7 +18,8 @@ class Circle : public Shape {
         double get_radius() const;
         void set_radius(double r);
         double area() const override;       
-        double perimeter() const override;   
+        double perimeter() const override;
+	double max_side() const override;	
         void translate(double incX, double incY) override;
         void print() override;              
         friend std::ostream& operator<<(std::ostream &out, const Circle &c);

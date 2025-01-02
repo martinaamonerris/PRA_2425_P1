@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Circle::Circle() : Shape(), center(Point2D()), radius(0) {}
+Circle::Circle() : Shape(), center(Point2D()), radius(1) {}
 
 Circle::Circle(string color, Point2D center, double radius) : Shape(color), center(center), radius(radius) {}
 
@@ -40,6 +40,10 @@ double Circle::area() const {
 
 double Circle::perimeter() const {
     return 2 * M_PI * radius;
+}
+
+double Circle::max_side() const {
+	return radius;
 }
 
 void Circle::translate(double incX, double incY) {

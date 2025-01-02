@@ -6,7 +6,6 @@ Shape::Shape(){
   color = "red";
 }
 
-
 Shape::Shape(string color) {
     if (color == "red" || color == "green" || color == "blue") {
         this->color = color;
